@@ -17,7 +17,7 @@
 			<div class="col-12 index">
 				<?php
 				if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
-				    setcookie('User', '', time() - 3600, '/index.php');
+                    setcookie('User', '', -1, '/');
 				    header('Location: index.php');
 				    exit();
 				}

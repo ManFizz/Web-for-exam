@@ -1,3 +1,7 @@
+<?php
+require_once('db.php');
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,7 +29,11 @@
 				if (!isset($_COOKIE['User'])) {
 					echo '<a href="/reg.php">Зарегистрируйтесь</a> или <a href="/login.php">войдите</a>';
 				} else {
-				    echo 'Привет, вы <b>' . $_COOKIE['User'] . '</b>!';
+
+                    $sql = "SELECT * FROM users WHERE username='" . $_COOKIE['User'];
+                    $result = mysqli_query($link, $sql);
+                    $row = mysqli_fetch_assoc($result);
+				    echo 'Привет, вы <b>' . $row['username'] . '</b>!';
 				    echo '<form method="POST" style="display:inline;">
 				            <button type="submit" name="logout" class="btn btn-danger">Выйти</button>
 				          </form>';

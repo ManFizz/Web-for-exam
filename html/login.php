@@ -22,17 +22,12 @@ if (isset($_POST['submit'])) {
     if (empty($username) || empty($password)) {
         $error = "Пожалуйста, введите все значения!";
     } else {
-        $sql = "SELECT * FROM users WHERE username='$username'";
+        $sql = "SELECT * FROM users WHERE username='" . $username . "' AND pass='" . $password . "'";
         $result = mysqli_query($link, $sql);
-        if (mysqli_num_rows($result) == 1) {
-            $row = mysqli_fetch_assoc($result);
-            if ($password == $row['pass']) {
-                setcookie("User", $username, time() + 7200);
-                header('Location: index.php');
-                exit();
-            } else {
-                $error = "Неправильное имя или пароль";
-            }
+        if (mysqli_num_rows($result) > 0) {
+            setcookie("User", $username, time() + 7200);
+            header('Location: index.php');
+            exit();
         } else {
             $error = "Неправильное имя или пароль";
         }

@@ -1,12 +1,3 @@
-<!--
-    <?php
-    if (isset($_COOKIE['User'])) {
-        header("Location: reg.php");
-    }
-    ?>
-    Нет полного блока, чтобы можно было попасть на страницу логина (был выбор войти ли зарег.)
--->
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -27,7 +18,7 @@
 				<?php
 				if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
 				    setcookie('User', '', time() - 3600, '/index.php');
-				    header('Location: /index.php');
+				    header('Location: index.php');
 				    exit();
 				}
 

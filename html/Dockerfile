@@ -12,6 +12,6 @@ RUN chown www-data:www-data /var/www/html && chown -R www-data:www-data /var/www
 
 RUN a2enmod rewrite
 
-EXPOSE 80
+EXPOSE  80
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
